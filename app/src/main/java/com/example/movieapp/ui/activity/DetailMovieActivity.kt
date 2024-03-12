@@ -61,9 +61,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
             ?.let {
                 movieDetailsResult = it
             }
+
         viewModel.requestSimilarMovie(movieDetailsResult.id,Constants.FIRST_PAGE)
         viewModel.requestVideos(movieDetailsResult.id)
-        Log.e("cyc","여기여기여기1")
         binding.tvMovieTile.text = movieDetailsResult.originalTitle
         Glide.with(this)
             .load(Constants.IMAGE_BASE_URL + "w300" + movieDetailsResult.backdropPath)
@@ -79,11 +79,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         binding.tvVoteCount.text = "(" + movieDetailsResult.voteCount + ")"
         binding.tvReleaseDate.text = "Release date: " + movieDetailsResult.releaseDate
         setCountryAdapter(movieDetailsResult.productionCountries)
-        Log.e("cyc","여기여기여기2")
-
         binding.tvLanguage.text = "Language: " + if(movieDetailsResult.spokenLanguages.isNotEmpty())movieDetailsResult.spokenLanguages[0].name else ""
-        Log.e("cyc","여기여기여기3")
-
         binding.tvRevenue.text = "Revennue: " + decimalFormat.format(movieDetailsResult.revenue) +"$"
         setGenreAdapter(movieDetailsResult.genres)
         setProductionCmpAdapter(movieDetailsResult.productionCompanies)
