@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.movieapp.network.models.MovieDetailsResult
 import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.NowPlayingResult
@@ -12,6 +13,7 @@ import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.TopRatedResult
 import com.example.movieapp.network.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val movieRepository: MovieRepository
+
 ) :ViewModel() {
 
     private val _nowPlayingMovies = MutableLiveData<ArrayList<MovieResult>>()
@@ -45,6 +48,12 @@ class MainViewModel @Inject constructor(
     private val _addSearchMovie = MutableLiveData<SearchMoviesResult>()
     val addSearchMovie: LiveData<SearchMoviesResult>
         get() = _addSearchMovie
+
+    private val _localMovies = MutableLiveData<ArrayList<MovieDetailsResult>>()
+    val localMovies: LiveData<ArrayList<MovieDetailsResult>>
+        get() = _localMovies
+
+
 
     fun requestNowPlaying(page:Int){
         val result = movieRepository.requestNowPlaying(page)
@@ -162,4 +171,14 @@ class MainViewModel @Inject constructor(
             }
         })
     }
+
+    suspend fun requestLocalGetMovies(){
+        viewModelScope.launch {
+          _localMovies.postValue( movieRepository.requestLocalGetMovies() as ArrayList<MovieDetailsResult>)
+        }
+    }
+
+
+
+
 }

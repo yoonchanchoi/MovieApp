@@ -4,11 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.movieapp.network.models.MovieDetailsResult
+import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.VideosResult
 import com.example.movieapp.network.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +33,10 @@ class DetailMovieViewModel @Inject constructor(
     private val _videos = MutableLiveData<VideosResult>()
     val videos: LiveData<VideosResult>
         get() = _videos
+
+    private val _localMovie = MutableLiveData<MovieDetailsResult>()
+    val localMovie: LiveData<MovieDetailsResult>
+        get() = _localMovie
 
     fun requestSimilarMovie(movieId: Int, page:Int){
         val result = movieRepository.requestSimilarMovie(movieId,page)
@@ -96,5 +103,22 @@ class DetailMovieViewModel @Inject constructor(
                 Log.e("cyc","VideosResult 통신 실패")
             }
         })
+    }
+
+    suspend fun requestLocalInsert(movieData: MovieDetailsResult){
+        viewModelScope.launch {
+            movieRepository.requestLocalInsert(movieData)
+
+        }
+    }
+    suspend fun requestLocalDelete(movieData: MovieDetailsResult){
+        viewModelScope.launch {
+            movieRepository.requestLocalDelete(movieData)
+        }
+    }
+    suspend fun reqestSelectMovie(id: Int){
+        viewModelScope.launch {
+            _localMovie.postValue( movieRepository.reqestSelectMovie(id))
+        }
     }
 }

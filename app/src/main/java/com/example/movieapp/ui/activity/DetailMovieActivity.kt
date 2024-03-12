@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.movieapp.R
@@ -27,6 +28,7 @@ import com.example.movieapp.util.Constants
 import com.example.movieapp.util.intentSerializable
 import com.example.movieapp.viewmodels.DetailMovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 @AndroidEntryPoint
@@ -39,6 +41,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     private lateinit var productionCmpAdapter: ProductionCmpAdapter
     private lateinit var similarMovieAdapter: PosterMovieAdapter
     private lateinit var videoAdapter: VideoAdapter
+    private lateinit var localMovie: MovieResult
 
 
     private val viewModel: DetailMovieViewModel by viewModels()
@@ -52,15 +55,17 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         setContentView(binding.root)
         initData()
         initObserve()
+        initListener()
     }
 
     private fun initData() {
         setSimilarMovieAdapter()
-
         intent.intentSerializable(Constants.INTENT_KEY_MOVIE_DETAIL, MovieDetailsResult::class.java)
             ?.let {
                 movieDetailsResult = it
             }
+        initCheckBox(movieDetailsResult.id)
+
         viewModel.requestSimilarMovie(movieDetailsResult.id,Constants.FIRST_PAGE)
         viewModel.requestVideos(movieDetailsResult.id)
         Log.e("cyc","여기여기여기1")
@@ -108,7 +113,29 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         viewModel.videos.observe(this){
             setVideoAdapter(it.videoInfos)
         }
+        viewModel.localMovie.observe(this){
+            if(it==null){
+                binding.cbFavorite.isChecked = false
+            }else{
+                binding.cbFavorite.isChecked = true
+            }
+        }
     }
+
+    private fun initListener(){
+        binding.cbFavorite.setOnCheckedChangeListener { btn, isChecked ->
+            if(isChecked) {
+                lifecycleScope.launch {
+                    viewModel.requestLocalInsert(movieDetailsResult)
+                }
+            }else{
+                lifecycleScope.launch {
+                    viewModel.requestLocalDelete(movieDetailsResult)
+                }
+            }
+        }
+    }
+
 
 
     private fun setCountryAdapter(productionCountries: ArrayList<ProductionCountryResult>) {
@@ -172,6 +199,13 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         }
     }
 
+    private fun initCheckBox(id: Int){
+        lifecycleScope.launch {
+            viewModel.reqestSelectMovie(id)
+        }
+    }
+
+
     override fun onMovieItemClick(movieId: Int) {
         viewModel.requestMovieDetails(movieId)
     }
@@ -180,5 +214,7 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         val intent = Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)
     }
+
+
 
 }

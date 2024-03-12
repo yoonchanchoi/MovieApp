@@ -2,11 +2,12 @@ package com.example.movieapp.network.models
 
 //import androidx.room.Entity
 //import androidx.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-//@Entity(tableName = "MovieTable")
 data class MovieResult(
     @SerializedName("adult")
     @Expose
@@ -22,7 +23,6 @@ data class MovieResult(
 
     @SerializedName("id")
     @Expose
-//    @PrimaryKey
     val id: Int = 0,
 
     @SerializedName("original_language")

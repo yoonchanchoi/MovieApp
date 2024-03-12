@@ -8,6 +8,7 @@ import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.TopRatedResult
 import com.example.movieapp.network.models.VideosResult
+import com.example.movieapp.network.models.roomdb.MovieDatabase
 //import com.example.movieapp.network.models.roomdb.MovieData
 //import com.example.movieapp.network.models.roomdb.MovieDatabase
 import com.example.movieapp.network.services.MovieService
@@ -15,8 +16,8 @@ import retrofit2.Call
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val service: MovieService
-//    private val movieDatabase: MovieDatabase
+    private val service: MovieService,
+    private val movieDatabase: MovieDatabase
 ) : MovieRepository {
     override fun requestNowPlaying(page: Int): Call<NowPlayingResult> =
         service.requestNowPlaying(language = "en-US", page)
@@ -42,23 +43,24 @@ class MovieRepositoryImpl @Inject constructor(
     ): Call<SearchMoviesResult> =
         service.requestSearchMovie(query, includeAdult = false, language = "en-US", primaryReleaseYear = "", page, region = "", year = "")
 
-//    override suspend fun requestLocalInsert(movieData: MovieData) {
-//        movieDatabase.movieDao().insert(movieData)
-//    }
-//
-//    override suspend fun requestLocalUpdate(movieData: MovieData) {
-//        movieDatabase.movieDao().update(movieData)
-//    }
-//
-//    override suspend fun requestLocalDelete(movieData: MovieData) {
-//        movieDatabase.movieDao().delete(movieData)
-//    }
-//
-//    override suspend fun requestLocalGetMovies(): List<MovieData> =
-//        movieDatabase.movieDao().getMovies()
-//
-//    override suspend fun reqestSelectMovie(id: Int): MovieData? =
-//        movieDatabase.movieDao().selectMovie(id)
+    override suspend fun requestLocalInsert(movieData: MovieDetailsResult) {
+        movieDatabase.movieDao().insert(movieData)
+    }
+
+    override suspend fun requestLocalUpdate(movieData: MovieDetailsResult) {
+        movieDatabase.movieDao().update(movieData)
+    }
+
+    override suspend fun requestLocalDelete(movieData: MovieDetailsResult) {
+        movieDatabase.movieDao().delete(movieData)
+    }
+
+    override suspend fun requestLocalGetMovies(): List<MovieDetailsResult> =
+        movieDatabase.movieDao().getMovies()
+
+    override suspend fun reqestSelectMovie(id: Int): MovieDetailsResult? =
+        movieDatabase.movieDao().selectMovie(id)
+
 
 }
 

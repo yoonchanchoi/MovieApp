@@ -49,11 +49,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_top" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_favorite"
+            <CheckBox
+                android:id="@+id/cb_favorite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/baseline_bookmark_border"
+                android:background="@drawable/bookmark_in_out"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_poster" />
 
@@ -69,7 +69,7 @@
                 android:stepSize="0.1"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toEndOf="@id/iv_poster"
-                app:layout_constraintTop_toBottomOf="@id/btn_favorite" />
+                app:layout_constraintTop_toBottomOf="@id/cb_favorite" />
 
             <TextView
                 android:id="@+id/tv_vote_count"

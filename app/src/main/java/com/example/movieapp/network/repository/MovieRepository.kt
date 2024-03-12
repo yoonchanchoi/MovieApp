@@ -29,15 +29,15 @@ interface MovieRepository {
         page: Int,
     ): Call<SearchMoviesResult>
 
-//    suspend fun requestLocalInsert(movieData: MovieData)
-//
-//    suspend fun requestLocalUpdate(movieData: MovieData)
-//
-//    suspend fun requestLocalDelete(movieData: MovieData)
-//
-//    suspend fun requestLocalGetMovies(): List<MovieData>
-//
-//    suspend fun reqestSelectMovie(id: Int): MovieData?
+    suspend fun requestLocalInsert(movieData: MovieDetailsResult)
+
+    suspend fun requestLocalUpdate(movieData: MovieDetailsResult)
+
+    suspend fun requestLocalDelete(movieData: MovieDetailsResult)
+
+    suspend fun requestLocalGetMovies(): List<MovieDetailsResult>
+
+    suspend fun reqestSelectMovie(id: Int): MovieDetailsResult?
 
 }
 
