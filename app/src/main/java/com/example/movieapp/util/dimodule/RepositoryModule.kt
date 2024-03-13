@@ -17,7 +17,4 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun bindMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
 
-//    @Binds
-//    @Singleton
-//    abstract fun bindMovieLoaclRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieDatabase
 }

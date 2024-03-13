@@ -2,7 +2,6 @@ package com.example.movieapp.util
 
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
 import java.io.Serializable
 
 @Suppress("DEPRECATION")

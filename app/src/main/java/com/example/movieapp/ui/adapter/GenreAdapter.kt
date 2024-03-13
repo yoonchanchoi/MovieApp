@@ -15,7 +15,6 @@ class GenreAdapter (
             ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GenreViewHolder(itemBinding)
     }
-
     override fun onBindViewHolder(holder: GenreViewHolder, position: Int) {
         holder.bind(genres[position])
     }

@@ -1,11 +1,7 @@
 package com.example.movieapp.ui.activity
 
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -27,12 +23,10 @@ class MainActivity : AppCompatActivity() {
         setNavi()
     }
 
-
     private fun setNavi(){
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.findNavController()
         binding.btnMenu.setupWithNavController(navController)
     }
-
 }

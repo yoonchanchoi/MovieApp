@@ -53,7 +53,6 @@ class DetailMovieViewModel @Inject constructor(
         })
     }
 
-
     fun requestMovieDetails(movieId: Int){
         val result = movieRepository.requestMovieDetails(movieId)
         result.enqueue(object : Callback<MovieDetailsResult>{

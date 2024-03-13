@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -12,7 +11,6 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.ActivityDetailMovieBinding
 import com.example.movieapp.network.models.GenreResult
 import com.example.movieapp.network.models.MovieDetailsResult
-import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.ProductionCompanyResult
 import com.example.movieapp.network.models.ProductionCountryResult
 import com.example.movieapp.network.models.VideoInfoResult
@@ -40,11 +38,8 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     private lateinit var similarMovieAdapter: PosterMovieAdapter
     private lateinit var videoAdapter: VideoAdapter
 
-
     private val viewModel: DetailMovieViewModel by viewModels()
-
     private var decimalFormat = DecimalFormat("#,###")
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,7 +147,6 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
             adapter = similarMovieAdapter
             scrollToPosition(0)
         }
-
     }
 
     private fun setVideoAdapter(videoInfos: ArrayList<VideoInfoResult>) {

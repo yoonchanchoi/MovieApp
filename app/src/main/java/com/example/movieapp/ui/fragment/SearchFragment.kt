@@ -97,7 +97,6 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     loadingProgressDialog.show()
                     if (textView.text.isNullOrBlank()) {
-                        Log.e("cyc", "검색 값이 null 이거나 비어있을때 ")
                         false
                     } else {
                         adatperFlag = true
@@ -107,7 +106,6 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                             page,
                             Constants.PAGE_SEARCH_FALSE
                         )
-                        Log.e("cyc", "검색 값이 null이 아니고 비어있지 않을때 ")
                         true
                     }
                 }

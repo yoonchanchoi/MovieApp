@@ -4,5 +4,4 @@ import android.net.Uri
 
 interface VideoRecyclerListener {
     fun onVideoItemClick(uri: Uri)
-
 }

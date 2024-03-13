@@ -19,7 +19,6 @@ class CountryAdapter (
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.bind(productionCountries[position])
     }
-
     override fun getItemCount(): Int {
         return productionCountries.size
     }

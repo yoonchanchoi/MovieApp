@@ -12,7 +12,6 @@ class HeadersInterceptor @Inject constructor(
     companion object {
         private const val CLIENT_TOKEN = BuildConfig.CLIENT_TOKEN
     }
-
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()

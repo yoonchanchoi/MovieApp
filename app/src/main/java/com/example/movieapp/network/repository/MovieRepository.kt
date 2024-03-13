@@ -1,14 +1,12 @@
 package com.example.movieapp.network.repository
 
 import com.example.movieapp.network.models.MovieDetailsResult
-import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.NowPlayingResult
 import com.example.movieapp.network.models.PopularResult
 import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.TopRatedResult
 import com.example.movieapp.network.models.VideosResult
-//import com.example.movieapp.network.models.roomdb.MovieData
 import retrofit2.Call
 
 interface MovieRepository {
@@ -28,16 +26,6 @@ interface MovieRepository {
         query: String,
         page: Int,
     ): Call<SearchMoviesResult>
-
-//    suspend fun requestLocalInsert(movieData: MovieData)
-//
-//    suspend fun requestLocalUpdate(movieData: MovieData)
-//
-//    suspend fun requestLocalDelete(movieData: MovieData)
-//
-//    suspend fun requestLocalGetMovies(): List<MovieData>
-//
-//    suspend fun reqestSelectMovie(id: Int): MovieData?
 
 }
 

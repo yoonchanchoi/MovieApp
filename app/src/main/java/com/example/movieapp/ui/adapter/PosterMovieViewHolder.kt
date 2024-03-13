@@ -22,5 +22,4 @@ class PosterMovieViewHolder(
         binding.itemTvPopularity.text = "Popularity" + movie.popularity.toString()
         binding.nowPlayingMovieItem.setOnClickListener { movieRecyclerListener.onMovieItemClick(movie.id) }
     }
-
 }
