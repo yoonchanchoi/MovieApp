@@ -106,7 +106,6 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         }
     }
 
-
     private fun setCountryAdapter(productionCountries: ArrayList<ProductionCountryResult>) {
         countryAdapter =
             CountryAdapter(productionCountries)
