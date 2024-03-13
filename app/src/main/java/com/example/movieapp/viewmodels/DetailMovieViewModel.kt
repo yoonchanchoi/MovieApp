@@ -9,6 +9,7 @@ import com.example.movieapp.network.models.MovieDetailsResult
 import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.VideosResult
+import com.example.movieapp.network.models.roomdb.MovieData
 import com.example.movieapp.network.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -34,8 +35,8 @@ class DetailMovieViewModel @Inject constructor(
     val videos: LiveData<VideosResult>
         get() = _videos
 
-    private val _localMovie = MutableLiveData<MovieDetailsResult>()
-    val localMovie: LiveData<MovieDetailsResult>
+    private val _localMovie = MutableLiveData<MovieData>()
+    val localMovie: LiveData<MovieData>
         get() = _localMovie
 
     fun requestSimilarMovie(movieId: Int, page:Int){
@@ -105,13 +106,13 @@ class DetailMovieViewModel @Inject constructor(
         })
     }
 
-    suspend fun requestLocalInsert(movieData: MovieDetailsResult){
+    suspend fun requestLocalInsert(movieData: MovieData){
         viewModelScope.launch {
             movieRepository.requestLocalInsert(movieData)
 
         }
     }
-    suspend fun requestLocalDelete(movieData: MovieDetailsResult){
+    suspend fun requestLocalDelete(movieData: MovieData){
         viewModelScope.launch {
             movieRepository.requestLocalDelete(movieData)
         }

@@ -8,7 +8,7 @@ import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.TopRatedResult
 import com.example.movieapp.network.models.VideosResult
-//import com.example.movieapp.network.models.roomdb.MovieData
+import com.example.movieapp.network.models.roomdb.MovieData
 import retrofit2.Call
 
 interface MovieRepository {
@@ -29,15 +29,15 @@ interface MovieRepository {
         page: Int,
     ): Call<SearchMoviesResult>
 
-    suspend fun requestLocalInsert(movieData: MovieDetailsResult)
+    suspend fun requestLocalInsert(movieData: MovieData)
 
-    suspend fun requestLocalUpdate(movieData: MovieDetailsResult)
+    suspend fun requestLocalUpdate(movieData: MovieData)
 
-    suspend fun requestLocalDelete(movieData: MovieDetailsResult)
+    suspend fun requestLocalDelete(movieData: MovieData)
 
-    suspend fun requestLocalGetMovies(): List<MovieDetailsResult>
+    suspend fun requestLocalGetMovies(): List<MovieData>
 
-    suspend fun reqestSelectMovie(id: Int): MovieDetailsResult?
+    suspend fun reqestSelectMovie(id: Int): MovieData?
 
 }
 

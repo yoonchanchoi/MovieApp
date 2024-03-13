@@ -52,14 +52,19 @@ class ProfileFragment : Fragment(), MovieRecyclerListener {
 
     private fun initObserve() {
         viewModel.localMovies.observe(viewLifecycleOwner){
-            setFavoriteMovieAdapter(it)
+            viewModel.requestFavorit(it)
         }
         viewModel.movieDetails.observe(viewLifecycleOwner){
-            if(flag)
-            flag = false
-            val intent = Intent(requireActivity(), DetailMovieActivity::class.java)
-            intent.putExtra(Constants.INTENT_KEY_MOVIE_DETAIL, it)
-            startActivity(intent)
+            if(flag){
+                flag = false
+                val intent = Intent(requireActivity(), DetailMovieActivity::class.java)
+                intent.putExtra(Constants.INTENT_KEY_MOVIE_DETAIL, it)
+                startActivity(intent)
+
+            }
+        }
+        viewModel.favoriteMovies.observe(viewLifecycleOwner){
+            setFavoriteMovieAdapter(it)
         }
     }
 

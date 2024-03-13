@@ -1,16 +1,14 @@
 package com.example.movieapp.network.repository
 
 import com.example.movieapp.network.models.MovieDetailsResult
-import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.NowPlayingResult
 import com.example.movieapp.network.models.PopularResult
 import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.TopRatedResult
 import com.example.movieapp.network.models.VideosResult
+import com.example.movieapp.network.models.roomdb.MovieData
 import com.example.movieapp.network.models.roomdb.MovieDatabase
-//import com.example.movieapp.network.models.roomdb.MovieData
-//import com.example.movieapp.network.models.roomdb.MovieDatabase
 import com.example.movieapp.network.services.MovieService
 import retrofit2.Call
 import javax.inject.Inject
@@ -43,22 +41,22 @@ class MovieRepositoryImpl @Inject constructor(
     ): Call<SearchMoviesResult> =
         service.requestSearchMovie(query, includeAdult = false, language = "en-US", primaryReleaseYear = "", page, region = "", year = "")
 
-    override suspend fun requestLocalInsert(movieData: MovieDetailsResult) {
+    override suspend fun requestLocalInsert(movieData: MovieData) {
         movieDatabase.movieDao().insert(movieData)
     }
 
-    override suspend fun requestLocalUpdate(movieData: MovieDetailsResult) {
+    override suspend fun requestLocalUpdate(movieData: MovieData) {
         movieDatabase.movieDao().update(movieData)
     }
 
-    override suspend fun requestLocalDelete(movieData: MovieDetailsResult) {
+    override suspend fun requestLocalDelete(movieData: MovieData) {
         movieDatabase.movieDao().delete(movieData)
     }
 
-    override suspend fun requestLocalGetMovies(): List<MovieDetailsResult> =
+    override suspend fun requestLocalGetMovies(): List<MovieData> =
         movieDatabase.movieDao().getMovies()
 
-    override suspend fun reqestSelectMovie(id: Int): MovieDetailsResult? =
+    override suspend fun reqestSelectMovie(id: Int): MovieData? =
         movieDatabase.movieDao().selectMovie(id)
 
 

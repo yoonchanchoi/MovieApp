@@ -7,24 +7,23 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.movieapp.network.models.MovieDetailsResult
-import com.example.movieapp.network.models.MovieResult
 
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movieData:MovieDetailsResult)
+    suspend fun insert(movieData:MovieData)
 
     @Update
-    suspend fun update(movieData:MovieDetailsResult)
+    suspend fun update(movieData:MovieData)
 
     @Delete
-    suspend fun delete(movieData:MovieDetailsResult)
+    suspend fun delete(movieData:MovieData)
 
     @Query("SELECT * FROM MovieTable")
-    suspend fun getMovies() : List<MovieDetailsResult>
+    suspend fun getMovies() : List<MovieData>
 
     @Query("SELECT * FROM MovieTable WHERE id = :id")
-    suspend fun selectMovie(id: Int): MovieDetailsResult?
+    suspend fun selectMovie(id: Int): MovieData?
 
     @Query("DELETE FROM MovieTable WHERE id = :id")
     suspend fun deleteMovie(id: Int)

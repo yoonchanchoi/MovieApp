@@ -17,6 +17,7 @@ import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.network.models.ProductionCompanyResult
 import com.example.movieapp.network.models.ProductionCountryResult
 import com.example.movieapp.network.models.VideoInfoResult
+import com.example.movieapp.network.models.roomdb.MovieData
 import com.example.movieapp.ui.adapter.CountryAdapter
 import com.example.movieapp.ui.adapter.GenreAdapter
 import com.example.movieapp.ui.listener.MovieRecyclerListener
@@ -41,7 +42,6 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     private lateinit var productionCmpAdapter: ProductionCmpAdapter
     private lateinit var similarMovieAdapter: PosterMovieAdapter
     private lateinit var videoAdapter: VideoAdapter
-    private lateinit var localMovie: MovieResult
 
 
     private val viewModel: DetailMovieViewModel by viewModels()
@@ -126,11 +126,11 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         binding.cbFavorite.setOnCheckedChangeListener { btn, isChecked ->
             if(isChecked) {
                 lifecycleScope.launch {
-                    viewModel.requestLocalInsert(movieDetailsResult)
+                    viewModel.requestLocalInsert(MovieData(movieDetailsResult.id) )
                 }
             }else{
                 lifecycleScope.launch {
-                    viewModel.requestLocalDelete(movieDetailsResult)
+                    viewModel.requestLocalDelete(MovieData(movieDetailsResult.id) )
                 }
             }
         }

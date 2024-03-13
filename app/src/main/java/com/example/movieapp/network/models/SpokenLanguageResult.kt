@@ -17,4 +17,5 @@ data class SpokenLanguageResult(
     @SerializedName("name")
     @Expose
     val name: String = ""
+
 ): Serializable

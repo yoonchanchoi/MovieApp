@@ -11,6 +11,7 @@ import com.example.movieapp.network.models.NowPlayingResult
 import com.example.movieapp.network.models.PopularResult
 import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.TopRatedResult
+import com.example.movieapp.network.models.roomdb.MovieData
 import com.example.movieapp.network.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -49,9 +50,13 @@ class MainViewModel @Inject constructor(
     val addSearchMovie: LiveData<SearchMoviesResult>
         get() = _addSearchMovie
 
-    private val _localMovies = MutableLiveData<ArrayList<MovieDetailsResult>>()
-    val localMovies: LiveData<ArrayList<MovieDetailsResult>>
+    private val _localMovies = MutableLiveData<ArrayList<MovieData>>()
+    val localMovies: LiveData<ArrayList<MovieData>>
         get() = _localMovies
+
+    private val _favoriteMovies = MutableLiveData<ArrayList<MovieDetailsResult>>()
+    val favoriteMovies: LiveData<ArrayList<MovieDetailsResult>>
+        get() = _favoriteMovies
 
 
 
@@ -174,11 +179,38 @@ class MainViewModel @Inject constructor(
 
     suspend fun requestLocalGetMovies(){
         viewModelScope.launch {
-          _localMovies.postValue( movieRepository.requestLocalGetMovies() as ArrayList<MovieDetailsResult>)
+          _localMovies.postValue( movieRepository.requestLocalGetMovies() as ArrayList<MovieData>)
         }
     }
 
+    fun requestFavorit(movieDatas: ArrayList<MovieData>){
+        val favoriteMovies = ArrayList<MovieDetailsResult>()
+        movieDatas.forEach {
+            val result = movieRepository.requestMovieDetails(it.id)
+            result.enqueue(object : Callback<MovieDetailsResult>{
+                override fun onResponse(
+                    call: Call<MovieDetailsResult>,
+                    response: Response<MovieDetailsResult>
+                ) {
+                    if(response.isSuccessful){
+                        response.body()?.let {
+                            favoriteMovies.add(it)
+                        }
 
+                    }else{
+                        Log.e("cyc","requestFavorit 실패")
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieDetailsResult>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+        _favoriteMovies.postValue(favoriteMovies)
+
+    }
 
 
 }
