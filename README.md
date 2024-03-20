@@ -1,35 +1,47 @@
 # 구조
 
-![13](https://github.com/yoonchanchoi/MovieApp/assets/74814647/0b8ac742-3db0-465f-831a-21ea7e25d9be)
 
-MainAcitivity 
-  - movieFragment
-  - searchFragment
-  - profilefragment
-
-jetpack navigation을 통한 묶음
-각각의 화면에서 movie 이미지 클릭시 DetailActivity로 넘어감
-DetailActivity를 에서 이미지 similar 영화 클릭시 자기자신 Activity를 시작하고 Flag를 통해서 현재 엑티비가 다음 열리는 엑티비티와 같을 경우 현재 엑티비티를 재활용
+![1](https://github.com/yoonchanchoi/MovieApp/assets/74814647/a3f850b6-981b-49d2-8254-b3d05f352b1a)
 
 
-## 각 화면별 간단 설명
 
-MovieFragment는 Adapter를 통한 view 구성
-SearchFragment 검색 api를 통한 데이터 호출 및 recyclerView의 스크롤 리스너를 통한 paging처리
-DetailFragment는 이전 화면에 api를 가지고 Detail데이터 호출후 intent넘겨 받음
+## 화면 구조
+- MainActivity 
+    - MovieFragment
+    - SearchFragment
+    - ProfileFragment
+
+- DetailMovieActivity
+</br>
+
+## 화면 이동
+Jetpack Navigation을 통하여 Fragment간 화면 이동을 합니다.
+MovieFragment, SearchFragment의 영화Item을 클릭하게 되면 해당 영화의 상세 데이터 페이지(DetailMovieActivity)로 넘어가게 됩니다.
+DetailMovieActivity에서 Similar 카테고리에 있는 영화Item을 클릭하게 되면 Similar 영화 데이터가 담긴 DetailMovieActivity를 호출하게 됩니다. 이 과정에서 Task의 스택이 지속적으로 쌓이는 것을 방지하기 위해 Flag를 이용했습니다.
+</br>
 
 
-## 아쉽웠던 부분
-hilt와 roomDb, Retrofit을 통해서 각각의 repository에 데이터를 받아오는 것을 분활 해보고 싶었음
+## 화면 View 구성
+MovieFragment는 여러 RecyclerView를 통해서 Item을 보여 줍니다.
+SearchFragment는 검색 api로 받아온 결과 값을 RecyclerView로 보여주며, addOnScrollListener를 통해 Paging처리를 했습니다.
+DetailMovieActivity는 Intent를 이용한 동영상 실행 기능과 영화의 상세 데이터를 보여 줍니다.
+</br>
 
-jetpack navigation의 화면 이동 중 observe이 재호되는 경우가 있었음 이뉸 onViewCreated부터 
-재시작이여서 재반응하는 것으로 봄 그래서 해당 로직을 flag로 해결하였지만 조금 더 좋은 방법 있을거 같아서 고민 중
 
-동영상 처리 과정에서 너무 많은 시간을 소비함.
+## 아쉬웠던 부분
+Hilt와 RoomDB, Retrofit을 통해서 Repository에서 RoomDB 데이터와 Retrofit으로 받은 데이터를 나누어 보고 싶었습니다.
+하지만 RoomDB를 제대로 구현하지 못하여 미환성 했습니다.
+</br>
+
+Jetpack Navigation의 화면이동 중 observe이 재호출되는 경우가 있었는데 이 부분은 Fragment의 lifecycle이 destroy는 되지 않았지만 onViewCreated부터 
+다시 실행되어 재반응하는 것으로 보였습니다. 그래서 해당 로직을 체크하는 flag를 이용하여 해결했습니다. 하지만 조금 더 좋은 방법이 있을 것으로 보입니다.
+</br>
+
+마지막으로 동영상 기능에 너무 많은 시간을 사용했던 부분이 아쉬웠습니다.
+</br>
 
 
 ## 스크린샷
-
 
 ![13](https://github.com/yoonchanchoi/MovieApp/assets/74814647/cb075001-ecf4-42de-aba7-b20a0ebdaa6d)
 
