@@ -9,6 +9,6 @@ class CountryViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(productionCountry: ProductionCountryResult) {
-        binding.itemTv.text = productionCountry.iso31661
+        binding.itemTv.text = productionCountry.countryCode
     }
 }

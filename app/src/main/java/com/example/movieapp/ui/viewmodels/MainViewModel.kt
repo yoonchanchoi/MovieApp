@@ -134,7 +134,7 @@ class MainViewModel @Inject constructor(
         })
     }
 
-    fun requestSearchMovie(query: String ,page: Int, checkPaging: Boolean){
+    fun requestSearchMovie(query: String ,page: Int, isCheckPaging: Boolean){
         val result = movieRepository.requestSearchMovie(query,page)
         result.enqueue(object : Callback<SearchMoviesResult>{
             override fun onResponse(
@@ -143,7 +143,7 @@ class MainViewModel @Inject constructor(
             ) {
                 if(response.isSuccessful){
                     Log.e("cyc","SearchMoviesResult 통신 성공")
-                    if(checkPaging){
+                    if(isCheckPaging){
                         response.body()?.let {
                             _addSearchMovie.postValue(it)
                         }
