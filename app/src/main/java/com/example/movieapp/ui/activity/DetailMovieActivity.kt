@@ -23,7 +23,7 @@ import com.example.movieapp.ui.adapter.VideoAdapter
 import com.example.movieapp.ui.listener.VideoRecyclerListener
 import com.example.movieapp.util.Constants
 import com.example.movieapp.util.intentSerializable
-import com.example.movieapp.viewmodels.DetailMovieViewModel
+import com.example.movieapp.ui.viewmodels.DetailMovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DecimalFormat
 

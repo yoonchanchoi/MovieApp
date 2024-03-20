@@ -19,7 +19,7 @@ import com.example.movieapp.ui.adapter.PosterMovieAdapter
 import com.example.movieapp.ui.adapter.PopularMovieAdapter
 import com.example.movieapp.ui.adapter.TopRatedMovieAdapter
 import com.example.movieapp.util.Constants
-import com.example.movieapp.viewmodels.MainViewModel
+import com.example.movieapp.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

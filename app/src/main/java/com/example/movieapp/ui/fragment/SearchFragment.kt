@@ -17,7 +17,7 @@ import com.example.movieapp.ui.adapter.PosterMovieAdapter
 import com.example.movieapp.ui.dialog.LoadingProgressDialog
 import com.example.movieapp.ui.listener.MovieRecyclerListener
 import com.example.movieapp.util.Constants
-import com.example.movieapp.viewmodels.MainViewModel
+import com.example.movieapp.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
