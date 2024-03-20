@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.movieapp.network.models.MovieDetailsResult
 import com.example.movieapp.network.models.SimilarResult
 import com.example.movieapp.network.models.VideosResult
-import com.example.movieapp.network.repository.MovieRepository
+import com.example.movieapp.network.repository.remote.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback

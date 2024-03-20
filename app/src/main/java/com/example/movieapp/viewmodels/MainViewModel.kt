@@ -10,7 +10,7 @@ import com.example.movieapp.network.models.NowPlayingResult
 import com.example.movieapp.network.models.PopularResult
 import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.TopRatedResult
-import com.example.movieapp.network.repository.MovieRepository
+import com.example.movieapp.network.repository.remote.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback

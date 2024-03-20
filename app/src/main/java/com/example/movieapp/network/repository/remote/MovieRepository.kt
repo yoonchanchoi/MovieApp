@@ -1,4 +1,4 @@
-package com.example.movieapp.network.repository
+package com.example.movieapp.network.repository.remote
 
 import com.example.movieapp.network.models.MovieDetailsResult
 import com.example.movieapp.network.models.NowPlayingResult
