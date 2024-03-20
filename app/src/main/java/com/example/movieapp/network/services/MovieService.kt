@@ -60,5 +60,4 @@ interface MovieService {
         @Query("region") region: String,
         @Query("year") year: String,
     ): Call<SearchMoviesResult>
-
 }

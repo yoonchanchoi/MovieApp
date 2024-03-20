@@ -19,7 +19,7 @@ import com.example.movieapp.ui.adapter.PosterMovieAdapter
 import com.example.movieapp.ui.adapter.PopularMovieAdapter
 import com.example.movieapp.ui.adapter.TopRatedMovieAdapter
 import com.example.movieapp.util.Constants
-import com.example.movieapp.viewmodels.MainViewModel
+import com.example.movieapp.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,18 +56,19 @@ class MovieFragment : Fragment(), MovieRecyclerListener {
     }
 
     private fun initObserve() {
+
         viewModel.nowPlayingMovies.observe(viewLifecycleOwner) {
             nowPlayingMovieAdapter.setData(it)
-
         }
+
         viewModel.popularMovies.observe(viewLifecycleOwner) {
             setPopularMovieAdapter(it)
-
         }
+
         viewModel.topRatedMovies.observe(viewLifecycleOwner) {
             setTopRatedMovieAdapter(it)
-
         }
+
         viewModel.movieDetails.observe(viewLifecycleOwner) {
             if (flag) {
                 flag = false
@@ -79,8 +80,7 @@ class MovieFragment : Fragment(), MovieRecyclerListener {
     }
 
     private fun setNowPlayingMovieAdapter() {
-        nowPlayingMovieAdapter =
-            PosterMovieAdapter(this)
+        nowPlayingMovieAdapter = PosterMovieAdapter(this)
         val movieManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvNowPlaying.apply {
@@ -91,8 +91,7 @@ class MovieFragment : Fragment(), MovieRecyclerListener {
     }
 
     private fun setPopularMovieAdapter(movies: ArrayList<MovieResult>) {
-        popularMovieAdapter =
-            PopularMovieAdapter(this, movies)
+        popularMovieAdapter = PopularMovieAdapter(this, movies)
         val movieManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPopular.apply {
@@ -103,8 +102,7 @@ class MovieFragment : Fragment(), MovieRecyclerListener {
     }
 
     private fun setTopRatedMovieAdapter(movies: ArrayList<MovieResult>) {
-        topRatedMovieAdapter =
-            TopRatedMovieAdapter(this, movies)
+        topRatedMovieAdapter = TopRatedMovieAdapter(this, movies)
         val topRatedMovieManager =
             GridLayoutManager(requireActivity(), 4, LinearLayoutManager.HORIZONTAL, false)
         binding.rvTopRated.apply {

@@ -17,7 +17,7 @@ import com.example.movieapp.ui.adapter.PosterMovieAdapter
 import com.example.movieapp.ui.dialog.LoadingProgressDialog
 import com.example.movieapp.ui.listener.MovieRecyclerListener
 import com.example.movieapp.util.Constants
-import com.example.movieapp.viewmodels.MainViewModel
+import com.example.movieapp.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
     private var adatperFlag = false
     private var clickFlag = false
     private var paginFlag = false
-    private var query =""
+    private var query = ""
     private var page = 1
     private val viewModel: MainViewModel by viewModels()
 
@@ -76,22 +76,20 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                 searchMovieAdapter.addData(it.movies)
                 progressBar.dismiss()
             }
-
         }
     }
 
     private fun initListener() {
         binding.btnSearch.setOnClickListener {
-            if(binding.etSearch.text.toString().isNotBlank()){
+            if (binding.etSearch.text.toString().isNotBlank()) {
                 adatperFlag = true
-                query=binding.etSearch.text.toString()
+                query = binding.etSearch.text.toString()
                 viewModel.requestSearchMovie(
-                    binding.etSearch.text.toString(),
-                    page,
-                    Constants.PAGE_SEARCH_FALSE
+                    binding.etSearch.text.toString(), page, Constants.PAGE_SEARCH_FALSE
                 )
             }
         }
+
         binding.etSearch.setOnEditorActionListener { textView, actionId, keyEvent ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
@@ -100,7 +98,7 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                         false
                     } else {
                         adatperFlag = true
-                        query=binding.etSearch.text.toString()
+                        query = binding.etSearch.text.toString()
                         viewModel.requestSearchMovie(
                             textView.text.toString(),
                             page,
@@ -109,6 +107,7 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                         true
                     }
                 }
+
                 else -> {
                     false
                 }
@@ -126,12 +125,11 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
             adapter = searchMovieAdapter
             scrollToPosition(0)
         }
-
     }
 
     override fun onMovieItemClick(movieId: Int) {
         clickFlag = true
-        query=""
+        query = ""
         binding.etSearch.text.clear()
         viewModel.requestMovieDetails(movieId)
     }
@@ -140,8 +138,10 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
     private fun setPaging() {
         progressBar = LoadingProgressDialog(requireActivity())
         binding.rvSearch.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+
                 val lastVisibleItemPosition =
                     (recyclerView.layoutManager as GridLayoutManager).findLastCompletelyVisibleItemPosition()
 
@@ -153,12 +153,8 @@ class SearchFragment : Fragment(), MovieRecyclerListener {
                     if (page < Constants.LAST_PAGE) {
                         page++
                         progressBar.show()
-                        paginFlag=true
-                        viewModel.requestSearchMovie(
-                            query,
-                            page,
-                            Constants.PAGE_SEARCH_TRUE
-                        )
+                        paginFlag = true
+                        viewModel.requestSearchMovie(query, page, Constants.PAGE_SEARCH_TRUE)
                     }
                 }
             }

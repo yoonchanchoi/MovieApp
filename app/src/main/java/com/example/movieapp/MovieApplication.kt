@@ -9,6 +9,7 @@ class MovieApplication : Application() {
         lateinit var instance: MovieApplication
             private set
     }
+
     override fun onCreate() {
         super.onCreate()
         instance = this

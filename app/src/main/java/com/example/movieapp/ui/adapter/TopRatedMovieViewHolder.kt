@@ -13,13 +13,17 @@ class TopRatedMovieViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movieRecyclerListener: MovieRecyclerListener, movie: MovieResult) {
+
         Glide.with(itemView)
             .load(Constants.IMAGE_BASE_URL + "w342" + movie.posterPath)
             .error(R.drawable.error_img)
             .fitCenter()
             .into(binding.itemCvIv)
+
         binding.itemTvMovieTitle.text = movie.originalTitle
+
         binding.itemTvPopularity.text = "Popularity" + movie.popularity.toString()
+
         binding.topRatedMovieItem.setOnClickListener { movieRecyclerListener.onMovieItemClick(movie.id) }
 
     }

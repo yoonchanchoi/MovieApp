@@ -1,14 +1,12 @@
 package com.example.movieapp.network.models
 
-//import androidx.room.Entity
-//import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class MovieResult(
+
     @SerializedName("adult")
-    @Expose
     val adult: Boolean = false,
 
     @SerializedName("backdrop_path")
@@ -20,7 +18,6 @@ data class MovieResult(
     val genreIds: ArrayList<Int>,
 
     @SerializedName("id")
-    @Expose
     val id: Int = 0,
 
     @SerializedName("original_language")
@@ -32,11 +29,9 @@ data class MovieResult(
     val originalTitle: String ="",
 
     @SerializedName("overview")
-    @Expose
     val overview: String ="",
 
     @SerializedName("popularity")
-    @Expose
     val popularity: Double = 0.0,
 
     @SerializedName("poster_path")
@@ -48,11 +43,9 @@ data class MovieResult(
     val releaseDate: String = "",
 
     @SerializedName("title")
-    @Expose
     val title: String = "",
 
     @SerializedName("video")
-    @Expose
     val video: Boolean = false,
 
     @SerializedName("vote_average")
@@ -62,4 +55,4 @@ data class MovieResult(
     @SerializedName("vote_count")
     @Expose
     val voteCount: Int = 0
-    ) : Serializable
+) : Serializable

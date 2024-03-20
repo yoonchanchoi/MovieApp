@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.databinding.ItemGenreBinding
 import com.example.movieapp.network.models.GenreResult
 
-class GenreAdapter (
+class GenreAdapter(
     private val genres: ArrayList<GenreResult>
 ) : RecyclerView.Adapter<GenreViewHolder>() {
 
@@ -15,6 +15,7 @@ class GenreAdapter (
             ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GenreViewHolder(itemBinding)
     }
+
     override fun onBindViewHolder(holder: GenreViewHolder, position: Int) {
         holder.bind(genres[position])
     }

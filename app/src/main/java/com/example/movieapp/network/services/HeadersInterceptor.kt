@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class HeadersInterceptor @Inject constructor(
 ) : Interceptor {
-
     companion object {
         private const val CLIENT_TOKEN = BuildConfig.CLIENT_TOKEN
     }

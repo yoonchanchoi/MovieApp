@@ -8,10 +8,9 @@ data class ProductionCountryResult(
 
     @SerializedName("iso_3166_1")
     @Expose
-    val iso31661: String = "",
+    val countryCode: String = "",
 
     @SerializedName("name")
-    @Expose
     val name: String = ""
 
 ): Serializable

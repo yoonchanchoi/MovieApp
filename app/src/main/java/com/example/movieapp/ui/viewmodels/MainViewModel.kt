@@ -1,4 +1,4 @@
-package com.example.movieapp.viewmodels
+package com.example.movieapp.ui.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import com.example.movieapp.network.models.NowPlayingResult
 import com.example.movieapp.network.models.PopularResult
 import com.example.movieapp.network.models.SearchMoviesResult
 import com.example.movieapp.network.models.TopRatedResult
-import com.example.movieapp.network.repository.MovieRepository
+import com.example.movieapp.network.repository.remote.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -134,7 +134,7 @@ class MainViewModel @Inject constructor(
         })
     }
 
-    fun requestSearchMovie(query: String ,page: Int, checkPaging: Boolean){
+    fun requestSearchMovie(query: String ,page: Int, isCheckPaging: Boolean){
         val result = movieRepository.requestSearchMovie(query,page)
         result.enqueue(object : Callback<SearchMoviesResult>{
             override fun onResponse(
@@ -143,7 +143,7 @@ class MainViewModel @Inject constructor(
             ) {
                 if(response.isSuccessful){
                     Log.e("cyc","SearchMoviesResult 통신 성공")
-                    if(checkPaging){
+                    if(isCheckPaging){
                         response.body()?.let {
                             _addSearchMovie.postValue(it)
                         }

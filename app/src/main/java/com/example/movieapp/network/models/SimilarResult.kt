@@ -4,10 +4,9 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class SimilarResult(
+data class SimilarResult(
 
     @SerializedName("page")
-    @Expose
     val page: Int = 0,
 
     @SerializedName("results")
