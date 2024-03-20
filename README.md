@@ -42,7 +42,6 @@ Jetpack Navigation의 화면이동 중 observe가 재호출되는 경우가 있�
 
 
 ## 스크린샷
-
 ![13](https://github.com/yoonchanchoi/MovieApp/assets/74814647/cb075001-ecf4-42de-aba7-b20a0ebdaa6d)
 
 
