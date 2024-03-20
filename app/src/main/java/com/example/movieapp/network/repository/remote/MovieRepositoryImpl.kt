@@ -22,7 +22,6 @@ class MovieRepositoryImpl @Inject constructor(
 
     override fun requestTopRated(page: Int): Call<TopRatedResult> =
         service.requestTopRated(language = "en-US", page)
-
     override fun requestMovieDetails(movieId: Int): Call<MovieDetailsResult> =
         service.requestMovieDetails(movieId)
 
@@ -32,11 +31,7 @@ class MovieRepositoryImpl @Inject constructor(
     override fun requestVideos(movieId: Int): Call<VideosResult> =
         service.requestVideos(movieId, language = "en-US")
 
-    override fun requestSearchMovie(
-        query: String,
-        page: Int,
-    ): Call<SearchMoviesResult> =
+    override fun requestSearchMovie(query: String, page: Int, ): Call<SearchMoviesResult> =
         service.requestSearchMovie(query, includeAdult = false, language = "en-US", primaryReleaseYear = "", page, region = "", year = "")
-
 }
 

@@ -7,7 +7,7 @@ import com.example.movieapp.databinding.ItemPosterMovieBinding
 import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.ui.listener.MovieRecyclerListener
 
-class PosterMovieAdapter (
+class PosterMovieAdapter(
     private val movieRecyclerListener: MovieRecyclerListener,
 ) : RecyclerView.Adapter<PosterMovieViewHolder>() {
 
@@ -20,19 +20,21 @@ class PosterMovieAdapter (
     }
 
     override fun onBindViewHolder(holder: PosterMovieViewHolder, position: Int) {
-        holder.bind(movieRecyclerListener,movieList[position])
+        holder.bind(movieRecyclerListener, movieList[position])
     }
 
     override fun getItemCount(): Int {
         return movieList.size
     }
-    fun setData(movies: ArrayList<MovieResult>){
+
+    fun setData(movies: ArrayList<MovieResult>) {
         movies?.let {
             this.movieList = it
         }
         notifyDataSetChanged()
     }
-    fun addData(movies: ArrayList<MovieResult>){
+
+    fun addData(movies: ArrayList<MovieResult>) {
         movies?.let {
             movieList.addAll(it)
         }

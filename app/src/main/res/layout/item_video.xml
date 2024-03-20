@@ -21,13 +21,14 @@
         <ImageView
             android:id="@+id/item_cv_iv_thbnail"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
+
         <ImageView
             android:id="@+id/item_cv_iv_pbtn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/baseline_smart_display"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_smart_display" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -49,7 +50,7 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--<VideoView-->
-<!--android:id="@+id/item_cv_vv"-->
-<!--android:layout_width="300dp"-->
-<!--android:layout_height="200dp" />-->
+    <!--<VideoView-->
+    <!--android:id="@+id/item_cv_vv"-->
+    <!--android:layout_width="300dp"-->
+    <!--android:layout_height="200dp" />-->

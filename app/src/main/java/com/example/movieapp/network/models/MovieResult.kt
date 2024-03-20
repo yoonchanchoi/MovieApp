@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class MovieResult(
+
     @SerializedName("adult")
     val adult: Boolean = false,
 
@@ -56,4 +57,4 @@ data class MovieResult(
     @SerializedName("vote_count")
     @Expose
     val voteCount: Int = 0
-    ) : Serializable
+) : Serializable

@@ -1,6 +1,5 @@
 package com.example.movieapp.util.dimodule
 
-//import com.example.movieapp.network.models.roomdb.MovieDatabase
 import com.example.movieapp.network.repository.remote.MovieRepository
 import com.example.movieapp.network.repository.remote.MovieRepositoryImpl
 import dagger.Binds

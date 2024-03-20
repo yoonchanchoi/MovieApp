@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class VideoInfoResult(
+
     @SerializedName("iso_639_1")
     @Expose
     val languageCode: String = "",

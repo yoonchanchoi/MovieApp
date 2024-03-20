@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class NowPlayingResult(
+
     @SerializedName("dates")
     val dates: DatesResult,
 

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.databinding.ItemProductionCompanyBinding
 import com.example.movieapp.network.models.ProductionCompanyResult
 
-class ProductionCmpAdapter (
+class ProductionCmpAdapter(
     private val productionCompanies: ArrayList<ProductionCompanyResult>
 ) : RecyclerView.Adapter<ProductionCmpViewHolder>() {
 

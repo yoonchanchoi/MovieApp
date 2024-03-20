@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.databinding.ItemCountryBinding
 import com.example.movieapp.network.models.ProductionCountryResult
 
-class CountryAdapter (
+class CountryAdapter(
     private val productionCountries: ArrayList<ProductionCountryResult>
 ) : RecyclerView.Adapter<CountryViewHolder>() {
 
@@ -19,6 +19,7 @@ class CountryAdapter (
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.bind(productionCountries[position])
     }
+
     override fun getItemCount(): Int {
         return productionCountries.size
     }

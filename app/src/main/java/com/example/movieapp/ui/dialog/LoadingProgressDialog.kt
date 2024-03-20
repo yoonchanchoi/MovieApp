@@ -19,9 +19,11 @@ class LoadingProgressDialog(context: Context) : Dialog(context) {
     init {
         binding.pb.isIndeterminate = true
         val color = ContextCompat.getColor(context, com.example.movieapp.R.color.white)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            binding.pb.indeterminateDrawable.colorFilter = BlendModeColorFilter((color), BlendMode.SRC_ATOP)
-        }else {
+            binding.pb.indeterminateDrawable.colorFilter =
+                BlendModeColorFilter((color), BlendMode.SRC_ATOP)
+        } else {
             binding.pb.indeterminateDrawable.setColorFilter(
                 color,
                 PorterDuff.Mode.SRC_IN

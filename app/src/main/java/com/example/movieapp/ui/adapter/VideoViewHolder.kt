@@ -18,9 +18,9 @@ class VideoViewHolder(
         videoRecyclerListener: VideoRecyclerListener,
         videoInfo: VideoInfoResult
     ) {
-        val strUrl = Constants.VIDEO_URL + videoInfo.key
-        Log.e("cyc", "strUrl--->${strUrl}")
+
         val uri = Uri.parse(Constants.VIDEO_URL + videoInfo.key)
+
         binding.itemTvVideo.text = videoInfo.name
 
         Glide.with(itemView)
@@ -28,6 +28,7 @@ class VideoViewHolder(
             .error(R.drawable.error_img)
             .fitCenter()
             .into(binding.itemCvIvThbnail)
+
         binding.videoItem.setOnClickListener { videoRecyclerListener.onVideoItemClick(uri) }
     }
 }

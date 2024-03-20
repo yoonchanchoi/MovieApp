@@ -4,7 +4,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class VideosResult(
+data class VideosResult(
+
     @SerializedName("id")
     val id: Int = 0,
 

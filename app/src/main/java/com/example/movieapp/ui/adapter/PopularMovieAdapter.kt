@@ -7,7 +7,7 @@ import com.example.movieapp.databinding.ItemPopularMovieBinding
 import com.example.movieapp.network.models.MovieResult
 import com.example.movieapp.ui.listener.MovieRecyclerListener
 
-class PopularMovieAdapter (
+class PopularMovieAdapter(
     private val movieRecyclerListener: MovieRecyclerListener,
     private val movies: ArrayList<MovieResult>
 ) : RecyclerView.Adapter<PopularMovieViewHolder>() {

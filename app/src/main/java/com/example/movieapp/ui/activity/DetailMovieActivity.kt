@@ -51,13 +51,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
 
     private fun initData() {
         setSimilarMovieAdapter()
-
         intent.intentSerializable(Constants.INTENT_KEY_MOVIE_DETAIL, MovieDetailsResult::class.java)
-            ?.let {
-                movieDetailsResult = it
-            }
-
-        viewModel.requestSimilarMovie(movieDetailsResult.id,Constants.FIRST_PAGE)
+            ?.let { movieDetailsResult = it }
+        viewModel.requestSimilarMovie(movieDetailsResult.id, Constants.FIRST_PAGE)
         viewModel.requestVideos(movieDetailsResult.id)
         binding.tvMovieTile.text = movieDetailsResult.originalTitle
         Glide.with(this)
@@ -70,23 +66,25 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
             .error(R.drawable.error_img)
             .fitCenter()
             .into(binding.ivPoster)
-        binding.rb.rating = (movieDetailsResult.voteAverage*5)/10
+        binding.rb.rating = (movieDetailsResult.voteAverage * 5) / 10
         binding.tvVoteCount.text = "(" + movieDetailsResult.voteCount + ")"
         binding.tvReleaseDate.text = "Release date: " + movieDetailsResult.releaseDate
         setCountryAdapter(movieDetailsResult.productionCountries)
-        binding.tvLanguage.text = "Language: " + if(movieDetailsResult.spokenLanguages.isNotEmpty())movieDetailsResult.spokenLanguages[0].name else ""
-        binding.tvRevenue.text = "Revennue: " + decimalFormat.format(movieDetailsResult.revenue) +"$"
+        binding.tvLanguage.text =
+            "Language: " + if (movieDetailsResult.spokenLanguages.isNotEmpty()) movieDetailsResult.spokenLanguages[0].name else ""
+        binding.tvRevenue.text =
+            "Revennue: " + decimalFormat.format(movieDetailsResult.revenue) + "$"
         setGenreAdapter(movieDetailsResult.genres)
         setProductionCmpAdapter(movieDetailsResult.productionCompanies)
         binding.tvOverview.text = " " + movieDetailsResult.overview
-
     }
 
-
     private fun initObserve(){
+
         viewModel.similarMovies.observe(this){
             similarMovieAdapter.setData(it.movies)
         }
+
         viewModel.movieDetails.observe(this){
             val intent = Intent(this,this::class.java)
             intent.apply {
@@ -102,10 +100,10 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     }
 
     private fun setCountryAdapter(productionCountries: ArrayList<ProductionCountryResult>) {
-        countryAdapter =
-            CountryAdapter(productionCountries)
-        val countryManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        countryAdapter = CountryAdapter(productionCountries)
+        val countryManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvCountry.apply {
             layoutManager = countryManager
             adapter = countryAdapter
@@ -114,10 +112,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     }
 
     private fun setGenreAdapter(genres: ArrayList<GenreResult>) {
-        genreAdapter =
-            GenreAdapter(genres)
-        val genreManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        genreAdapter = GenreAdapter(genres)
+        val genreManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvGenres.apply {
             layoutManager = genreManager
             adapter = genreAdapter
@@ -126,10 +123,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     }
 
     private fun setProductionCmpAdapter(productionCompanies: ArrayList<ProductionCompanyResult>) {
-        productionCmpAdapter =
-            ProductionCmpAdapter(productionCompanies)
-        val productionCmpManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        productionCmpAdapter = ProductionCmpAdapter(productionCompanies)
+        val productionCmpManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvProducCmp.apply {
             layoutManager = productionCmpManager
             adapter = productionCmpAdapter
@@ -138,10 +134,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     }
 
     private fun setSimilarMovieAdapter() {
-        similarMovieAdapter =
-            PosterMovieAdapter(this)
-        val similarMovieManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        similarMovieAdapter = PosterMovieAdapter(this)
+        val similarMovieManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvSimilarMovies.apply {
             layoutManager = similarMovieManager
             adapter = similarMovieAdapter
@@ -150,10 +145,9 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
     }
 
     private fun setVideoAdapter(videoInfos: ArrayList<VideoInfoResult>) {
-        videoAdapter =
-            VideoAdapter( this, videoInfos)
-        val videoManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        videoAdapter = VideoAdapter( this, videoInfos)
+        val videoManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.rvVideo.apply {
             layoutManager = videoManager
             adapter = videoAdapter
@@ -169,5 +163,4 @@ class DetailMovieActivity : AppCompatActivity(), MovieRecyclerListener, VideoRec
         val intent = Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)
     }
-
 }
