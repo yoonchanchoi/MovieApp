@@ -22,11 +22,7 @@ interface MovieRepository {
 
     fun requestVideos(movieId: Int): Call<VideosResult>
 
-    fun requestSearchMovie(
-        query: String,
-        page: Int,
-    ): Call<SearchMoviesResult>
-
+    fun requestSearchMovie(query: String, page: Int, ): Call<SearchMoviesResult>
 }
 
 
