@@ -6,11 +6,9 @@ import java.io.Serializable
 
 class DatesResult(
     @SerializedName("maximum")
-    @Expose
     val maximum: String = "",
 
     @SerializedName("minimum")
-    @Expose
     val minimum: String = ""
 
 ) : Serializable

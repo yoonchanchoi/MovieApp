@@ -6,11 +6,9 @@ import java.io.Serializable
 
 data class BelongsToCollection(
     @SerializedName("id")
-    @Expose
     val id: Int = 0,
 
     @SerializedName("name")
-    @Expose
     val name: String = "",
 
     @SerializedName("poster_path")

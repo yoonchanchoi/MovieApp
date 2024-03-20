@@ -6,7 +6,6 @@ import java.io.Serializable
 
 data class ProductionCompanyResult(
     @SerializedName("id")
-    @Expose
     val id: Int = 0,
 
     @SerializedName("logo_path")
@@ -14,7 +13,6 @@ data class ProductionCompanyResult(
     val logoPath: String = "",
 
     @SerializedName("name")
-    @Expose
     val name: String = "",
 
     @SerializedName("origin_country")

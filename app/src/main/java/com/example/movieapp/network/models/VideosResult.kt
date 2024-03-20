@@ -6,7 +6,6 @@ import java.io.Serializable
 
 class VideosResult(
     @SerializedName("id")
-    @Expose
     val id: Int = 0,
 
     @SerializedName("results")

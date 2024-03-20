@@ -7,7 +7,6 @@ import java.io.Serializable
 class SimilarResult(
 
     @SerializedName("page")
-    @Expose
     val page: Int = 0,
 
     @SerializedName("results")

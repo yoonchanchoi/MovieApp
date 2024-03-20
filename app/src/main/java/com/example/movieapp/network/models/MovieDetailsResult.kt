@@ -6,7 +6,6 @@ import java.io.Serializable
 
 data class MovieDetailsResult(
     @SerializedName("adult")
-    @Expose
     val adult: Boolean = false,
 
     @SerializedName("backdrop_path")
@@ -18,19 +17,15 @@ data class MovieDetailsResult(
     val belongsToCollection: BelongsToCollection,
 
     @SerializedName("budget")
-    @Expose
     val budget: Int = 0,
 
     @SerializedName("genres")
-    @Expose
     val genres: ArrayList<GenreResult>,
 
     @SerializedName("homepage")
-    @Expose
     val homepage: String = "",
 
     @SerializedName("id")
-    @Expose
     val id: Int = 0,
 
     @SerializedName("imdb_id")
@@ -46,11 +41,9 @@ data class MovieDetailsResult(
     val originalTitle: String = "",
 
     @SerializedName("overview")
-    @Expose
     val overview: String = "",
 
     @SerializedName("popularity")
-    @Expose
     val popularity: Float = 0f,
 
     @SerializedName("poster_path")
@@ -70,11 +63,9 @@ data class MovieDetailsResult(
     val releaseDate: String = "",
 
     @SerializedName("revenue")
-    @Expose
     val revenue: Int = 0,
 
     @SerializedName("runtime")
-    @Expose
     val runtime: Int = 0,
 
     @SerializedName("spoken_languages")
@@ -82,19 +73,15 @@ data class MovieDetailsResult(
     val spokenLanguages: ArrayList<SpokenLanguageResult>,
 
     @SerializedName("status")
-    @Expose
     val status: String = "",
 
     @SerializedName("tagline")
-    @Expose
     val tagline: String = "",
 
     @SerializedName("title")
-    @Expose
     val title: String = "",
 
     @SerializedName("video")
-    @Expose
     val video: Boolean = false,
 
     @SerializedName("vote_average")

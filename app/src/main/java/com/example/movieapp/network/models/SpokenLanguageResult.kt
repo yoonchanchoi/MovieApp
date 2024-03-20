@@ -12,10 +12,9 @@ data class SpokenLanguageResult(
 
     @SerializedName("iso_639_1")
     @Expose
-    val iso6391: String = "",
+    val languageCode: String = "",
 
     @SerializedName("name")
-    @Expose
     val name: String = ""
 
 ): Serializable
